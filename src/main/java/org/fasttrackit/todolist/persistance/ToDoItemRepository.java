@@ -1,19 +1,20 @@
 package org.fasttrackit.todolist.persistance;
 
-import org.fasttrackit.todolist.domain.ToDoIthem;
-import org.fasttrackit.todolist.transfer.CreateToDoIthemRequest;
+import org.fasttrackit.todolist.domain.ToDoItem;
+import org.fasttrackit.todolist.domain.ToDoItem;
+import org.fasttrackit.todolist.transfer.CreateToDoItemRequest;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToDoIthemRepository {
+public class ToDoItemRepository {
 
-    public ToDoIthemRepository() throws SQLException, IOException, ClassNotFoundException {
+    public ToDoItemRepository() throws SQLException, IOException, ClassNotFoundException {
     }
 
-    public void creatToDoIthem(CreateToDoIthemRequest request) throws IOException, ClassNotFoundException, SQLException {
+    public void creatToDoIthem(CreateToDoItemRequest request) throws IOException, ClassNotFoundException, SQLException {
         String sql = "INSERT INTO to_do_item (description, deadline) VALUES (?, ?)";
 
         //try with recources
@@ -52,27 +53,27 @@ public class ToDoIthemRepository {
         }
     }
 
-    public List<ToDoIthem> getToDoItem() throws SQLException, IOException, ClassNotFoundException {
+    public List<ToDoItem> getToDoItem() throws SQLException, IOException, ClassNotFoundException {
         String sql = "SELECT id, description, deadline, done FRO to_do_item";
 
-        List<ToDoIthem> toDoIthems = new ArrayList<>();
+        List<ToDoItem> toDoItems = new ArrayList<>();
 
         try (Connection connection = DatabaseConfiguration.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
 
             while (resultSet.next()) {
-                ToDoIthem toDoIthem = new ToDoIthem();
+                ToDoItem toDoItem = new ToDoItem();
 
-                toDoIthem.setId(resultSet.getLong("id"));
-                toDoIthem.setDescription(resultSet.getString("description"));
-                toDoIthem.setDeadline(resultSet.getDate("deadline").toLocalDate());
-                toDoIthem.setDone(resultSet.getBoolean("done"));
+                toDoItem.setId(resultSet.getLong("id"));
+                toDoItem.setDescription(resultSet.getString("description"));
+                toDoItem.setDeadline(resultSet.getDate("deadline").toLocalDate());
+                toDoItem.setDone(resultSet.getBoolean("done"));
 
-                toDoIthems.add(toDoIthem);
+                toDoItems.add(toDoItem);
             }
 
         }
-        return toDoIthems;
+        return toDoItems;
     }
 }

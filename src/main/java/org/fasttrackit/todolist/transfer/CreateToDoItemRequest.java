@@ -1,23 +1,12 @@
-package org.fasttrackit.todolist.domain;
+package org.fasttrackit.todolist.transfer;
 
 import java.time.LocalDate;
 
-public class ToDoIthem {
+//DTO = data transfer object
+public class CreateToDoItemRequest {
 
-
-    private long id;
     private String description;
     private LocalDate deadline;
-    private boolean done;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -35,23 +24,11 @@ public class ToDoIthem {
         this.deadline = deadline;
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
     @Override
     public String toString() {
-        return "ToDoIthem{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
+        return "CreateToDoIthemRequest{" +
+                "description='" + description + '\'' +
                 ", deadline=" + deadline +
-                ", done=" + done +
                 '}';
     }
 }
-
-

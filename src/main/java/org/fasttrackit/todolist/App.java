@@ -1,8 +1,8 @@
 package org.fasttrackit.todolist;
 
-import org.fasttrackit.todolist.domain.ToDoIthem;
-import org.fasttrackit.todolist.persistance.ToDoIthemRepository;
-import org.fasttrackit.todolist.transfer.CreateToDoIthemRequest;
+import org.fasttrackit.todolist.domain.ToDoItem;
+import org.fasttrackit.todolist.persistance.ToDoItemRepository;
+import org.fasttrackit.todolist.transfer.CreateToDoItemRequest;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,11 +11,11 @@ import java.time.LocalDate;
 
 public class App {
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        CreateToDoIthemRequest request = new CreateToDoIthemRequest();
+        CreateToDoItemRequest request = new CreateToDoItemRequest();
         request.setDescription("Learn JDBC");
         request.setDeadline(LocalDate.now().plusWeeks(1));
 
-        ToDoIthemRepository toDoIthemRepository = new ToDoIthemRepository();
+        ToDoItemRepository toDoIthemRepository = new ToDoItemRepository();
         toDoIthemRepository.creatToDoIthem(request);
 
 //        toDoIthemRepository.updateToDoItem(1, true);
