@@ -20,10 +20,11 @@ public class DatabaseConfiguration {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            return DriverManager.getConnection(
+            Connection connection = DriverManager.getConnection(
                     properties.getProperty("DB_URL"),
                     properties.getProperty("DB_USERNAME"),
                     properties.getProperty("DB_PASSWORD"));
+            return connection;
         } finally {
             //closing imputStream to free up memory
             if (inputStream != null) {

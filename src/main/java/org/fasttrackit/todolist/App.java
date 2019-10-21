@@ -17,5 +17,10 @@ public class App {
 
         ToDoIthemRepository toDoIthemRepository = new ToDoIthemRepository();
         toDoIthemRepository.creatToDoIthem(request);
+
+//        toDoIthemRepository.updateToDoItem(1, true);
+//        toDoIthemRepository.deleteToDoItem(1);
+//
+//        toDoIthemRepository.getToDoItem();
     }
 }
