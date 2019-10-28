@@ -2,6 +2,7 @@ package org.fasttrackit.todolist.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.fasttrackit.todolist.config.ObjectMapperConfiguration;
 import org.fasttrackit.todolist.domain.ToDoItem;
 import org.fasttrackit.todolist.service.ToDoItemService;
 import org.fasttrackit.todolist.transfer.CreateToDoItemRequest;
@@ -74,10 +75,7 @@ public class ToDoItemServlet extends HttpServlet {
         try {
             List<ToDoItem> toDoItems = toDoItemService.getToDoItems();
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-
-            String response = objectMapper.writeValueAsString(toDoItems);
+            String response = ObjectMapperConfiguration.getObjectMapper().writeValueAsString(toDoItems);
 
             resp.getWriter().print(response);
         } catch (SQLException | ClassNotFoundException e) {
