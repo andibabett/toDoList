@@ -7,6 +7,7 @@ import org.fasttrackit.todolist.transfer.CreateToDoItemRequest;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class App {
@@ -18,10 +19,12 @@ public class App {
         ToDoItemRepository toDoIthemRepository = new ToDoItemRepository();
         toDoIthemRepository.creatToDoIthem(request);
 
-//        toDoIthemRepository.updateToDoItem(1, true);
-//        toDoIthemRepository.deleteToDoItem(1);
-//
-//        toDoIthemRepository.getToDoItem();
+        toDoIthemRepository.updateToDoItem(1, true);
+        toDoIthemRepository.deleteToDoItem(1);
+
+      List<ToDoItem> toDoItems = toDoIthemRepository.getToDoItems();
+
+        System.out.println(toDoItems);
     }
 
 

@@ -33,6 +33,6 @@ public class ToDoItemService {
 
     public List<ToDoItem> getToDoItems() throws SQLException, IOException, ClassNotFoundException {
         System.out.println("Retrieving to-do-items...");
-        return toDoItemRepository.getToDoItem();
+        return toDoItemRepository.getToDoItems();
     }
 }

@@ -29,10 +29,7 @@ public class ToDoItemServlet extends HttpServlet {
     //endpoint
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-
-        CreateToDoItemRequest request = objectMapper.readValue(req.getReader(), CreateToDoItemRequest.class);
+        CreateToDoItemRequest request = ObjectMapperConfiguration.getObjectMapper().readValue(req.getReader(), CreateToDoItemRequest.class);
 
         try {
             toDoItemService.createToDoItem(request);
@@ -56,12 +53,7 @@ public class ToDoItemServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-
-        UpdateToDoItemRequest request = objectMapper.readValue(req.getReader(), UpdateToDoItemRequest.class);
-
+        UpdateToDoItemRequest request = ObjectMapperConfiguration.getObjectMapper().readValue(req.getReader(), UpdateToDoItemRequest.class);
 
         try {
             toDoItemService.updateToDoItem(Long.parseLong(id), request);
@@ -81,8 +73,22 @@ public class ToDoItemServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             resp.sendError(500, "Internal server error" + e.getMessage());
         }
-
-
     }
+
+//    //pre-flight request
+//    @Override
+//    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        setAccessControlHesders(resp);
+//    }
+//
+//    // CORS configuration (Cross-Origin-Resource-Sharing)
+//    private void setAccessControlHesders(HttpServletResponse resp) {
+//        resp.setHeader("Access-Control-Allow-Origin", "*");
+//        resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//        resp.setHeader("Access-Control-Allow-Headers", "content-type");
+//
+//
+//    }
+
 }
 

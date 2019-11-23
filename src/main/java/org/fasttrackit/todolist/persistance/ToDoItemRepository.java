@@ -43,7 +43,7 @@ public class ToDoItemRepository {
     }
 
     public void deleteToDoItem(long id) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "DELETE FROM to_do_list WHERE id=?";
+        String sql = "DELETE FROM to_do_item WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -53,8 +53,8 @@ public class ToDoItemRepository {
         }
     }
 
-    public List<ToDoItem> getToDoItem() throws SQLException, IOException, ClassNotFoundException {
-        String sql = "SELECT id, description, deadline, done FRO to_do_item";
+    public List<ToDoItem> getToDoItems() throws SQLException, IOException, ClassNotFoundException {
+        String sql = "SELECT id, description, deadline, done FROM to_do_item";
 
         List<ToDoItem> toDoItems = new ArrayList<>();
 
